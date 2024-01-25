@@ -18,10 +18,12 @@ public class Character : MonoBehaviour
     // 在 Unity 面板中可以给事件挂载一系列的函数
     public UnityEvent<Transform> OnTakeDamage; // 受伤事件, 依赖于攻击者的方向
     public UnityEvent OnDie; // 死亡事件
+    public UnityEvent<Character> OnHealthChange; // 血量改变事件
 
     private void Start()
     {
         currentHealth = maxHealth;
+        OnHealthChange?.Invoke(this); // 触发血量改变要执行的事件
     }
 
     private void Update()
@@ -45,6 +47,8 @@ public class Character : MonoBehaviour
             currentHealth = 0;
             OnDie?.Invoke(); // 触发死亡要执行的事件
         }
+
+        OnHealthChange?.Invoke(this); // 触发血量改变要执行的事件
     }
 
     /// <summary>
