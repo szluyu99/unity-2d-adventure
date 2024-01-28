@@ -51,7 +51,7 @@ public class Enemy : MonoBehaviour
         physicsCheck = GetComponent<PhysicsCheck>();
 
         currentSpeed = normalSpeed;
-        waitTimeCounter = waitTime;
+        // waitTimeCounter = waitTime;
         lostTimeCounter = lostTime;
     }
 
