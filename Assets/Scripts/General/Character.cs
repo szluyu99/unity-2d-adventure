@@ -31,6 +31,15 @@ public class Character : MonoBehaviour
         CheckInvulnerable();
     }
 
+    private void OnTriggerStay2D(Collider2D other) {
+        if (other.CompareTag("Water")) 
+        {
+            currentHealth = 0;
+            OnHealthChange?.Invoke(this); // 触发血量改变要执行的事件
+            OnDie?.Invoke(); // 触发死亡要执行的事件
+        }
+    }
+
     // 受到来自 attacker 的攻击
     public void TakeDamage(Attack attacker)
     {
